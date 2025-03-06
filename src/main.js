@@ -17,6 +17,10 @@ form.addEventListener('submit', async event => {
 
   loader.style.display = 'block';
   gallery.innerHTML = '';
+
+  // В продакшн збірці це не потрібно, але для в цілях демонстрації додаємо паузу, щоб було видно лоадер
+  await new Promise(resolve => setTimeout(resolve, 350));
+
   const data = await fetchImages(query);
   loader.style.display = 'none';
 
@@ -24,6 +28,7 @@ form.addEventListener('submit', async event => {
     iziToast.warning({
       title: 'No Results',
       message: 'Sorry, no images found!',
+      position: 'center',
     });
   } else {
     renderGallery(data.hits);
