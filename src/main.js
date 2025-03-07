@@ -1,4 +1,4 @@
-import { fetchImages } from './js/pixabay-api.js';
+import { fetchImages, fetchImagesAxios } from './js/pixabay-api.js';
 import { renderGallery } from './js/render-functions.js';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
@@ -21,7 +21,7 @@ form.addEventListener('submit', async event => {
   // В продакшн збірці це не потрібно, але для в цілях демонстрації додаємо паузу, щоб було видно лоадер
   await new Promise(resolve => setTimeout(resolve, 350));
 
-  const data = await fetchImages(query);
+  const data = await fetchImagesAxios(query);
   loader.style.display = 'none';
 
   if (data.hits.length === 0) {
